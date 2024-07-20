@@ -1,75 +1,23 @@
-#Program to create an abstract class employee with an abstractmethod calculate_salary
+#Program to find the largest common prefix
 
-from abc import ABC, abstractmethod
+def longest_common_prefix(str1, str2):
 
-# Abstract class Employee
-
-class Employee(ABC):
-
-    @abstractmethod
-
-    def calculate_salary(self):
-
-        pass
-
-# Manager subclass
-
-class Manager(Employee):
-
-    def _init_(self, base_salary, bonus):
-
-        self.base_salary = base_salary
-
-        self.bonus = bonus
+    min_length = min(len(str1), len(str2))
     
-    def calculate_salary(self):
+    for i in range(min_length):
 
-        return self.base_salary + self.bonus
+        if str1[i] != str2[i]:
 
-# Developer subclass
-
-class Developer(Employee):
-
-    def _init_(self, base_salary, project_count):
-
-        self.base_salary = base_salary
-
-        self.project_count = project_count
+            return str1[:i]
     
-    def calculate_salary(self):
+    return str1[:min_length]
 
-        # Assume a fixed amount of 500 per project
+# Test the function
 
-        return self.base_salary + (self.project_count * 500)
+input1 = "flower"
 
-# Intern subclass
+input2 = "flow"
 
-class Intern(Employee):
+output = longest_common_prefix(input1, input2)
 
-    def _init_(self, stipend):
-
-        self.stipend = stipend
-    
-    def calculate_salary(self):
-
-        return self.stipend
-
-# Example Usage
-
-if __name__ == "_main_":
-
-    # Creating instances
-
-    manager = Manager(base_salary=80000, bonus=10000)
-
-    developer = Developer(base_salary=60000, project_count=5)
-
-    intern = Intern(stipend=2000)
-    
-    # Calculating and printing salaries
-
-    print(f"Manager's salary: ${manager.calculate_salary()}")
-
-    print(f"Developer's salary: ${developer.calculate_salary()}")
-
-    print(f"Intern's salary: ${intern.calculate_salary()}")
+print("Output:", output)
